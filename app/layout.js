@@ -6,18 +6,12 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
+import Header from "@/components/header";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "ThinkSync",
@@ -29,18 +23,18 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${inter.className} bg-gradient-to-b from-orange-50 via-amber-50 to-orange-50`}
         >
-          <header className="flex justify-end items-center p-4 gap-4 h-16">
-            <SignedOut>
-              <SignInButton />
-              <SignUpButton />
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </header>
-          {children}
+          <div className="inset-0 bg-[url('/bg.jpg')] opacity-50 fixed -z-10" />
+          <Header />
+          <main className="min-h-screen">{children}</main>
+          {/* <Toaster richColors /> */}
+
+          <footer className="bg-orange-300 py-12 bg-opacity-10">
+            <div className="container mx-auto px-4 text-center text-gray-900">
+              <p>Made by Kartikey Katyal || 2025  </p>
+            </div>
+          </footer>
         </body>
       </html>
     </ClerkProvider>
